@@ -57,26 +57,41 @@ main::after {
  .rus ol li, .eng ol li{
   position: relative;
   display: none;
-  text-align: left;
  list-style-position: inside;
- padding: 5px;
- min-width: 60px;
+ padding: 10px 5px;
+ margin: 0 5px;
  word-break: break-all;
-   z-index: 5;
+ z-index: 4;
  }
  .title {
-   padding: 5px;
-   display: block;
-   position: absolute;
-   top:-55px;
-   left:-30px;
-   background-color:white;
-   color: black;
-   animation: fadeIn 0.7s;
-   box-shadow: 2px 0 1rem 0 rgba(0, 0, 0, 0.7);
-   border-radius: 10px;
-   z-index: 5;
+  text-align: center;
+  padding: 5px;
+  display: block;
+  left: 0;
+  top:-60px;
+  width:100%;
+  min-height: 45px;
+  position: absolute;
+  background-color:white;
+  color: black;
+  animation: fadeIn 0.5s;
+  box-shadow: 2px 0 1rem 0 rgba(0, 0, 0, 0.7);
+  border-radius: 10px;
+  z-index: 8;
  }
+ .title:before {
+  content: "";
+  width: 0; 
+  height: 0;
+  top:50px;
+  position: absolute; 
+  bottom: -18px; 
+  left:calc(50% - 10px);
+  border-top: 12px solid transparent;
+  border-right: 20px solid white;
+  border-bottom: 12px solid transparent;
+  transform: rotate(-90deg);
+  }
  @keyframes fadeIn {
   0% {
     opacity: 0;
@@ -128,16 +143,17 @@ button:hover {
 input:focus {
   background-color:rgba(255, 255, 255, 1);
   width: 20vw;
-  height: 5vh;
+  height: 40px;
   margin-bottom: 0;
   transition: width 1s;
 }
 input {
   padding: 5px;
-  margin-bottom: 26px;
+  margin-bottom: 17px;
   width:10vw;
+  height: 20px;
   font-size: 20px;
-  min-width: 90px;
+  min-width: 100px;
   background-color:rgba(255,255,255, 0.5);
   margin-left: 5px;
 }
@@ -151,24 +167,49 @@ footer {
 @media (max-width:767px) {
   .rus ol li, .eng ol li {
     z-index: 3;
-    min-width: 0;
     padding-left: 5px;
-    border-bottom: 4px grey;
-    border-bottom-style: dotted;
   }
   main {
     width: 90%;
+    flex-direction: column;
   }
   main::after {
-    border: 5px solid rgb(182, 19, 19);
-    border-right-color: transparent;
+    display: none;
+  }
+  .rus::after {
+  z-index: 2;
+  position: absolute;
+  content: '';
+  bottom:-10px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 20px;
+  margin: auto;
+  background-image: -webkit-repeating-linear-gradient(left, #343434 0, #343434 3px, transparent 3px, transparent 15px);
+  background-image: repeating-linear-gradient(90deg, rgb(182, 19, 19) 0, #343434 3px, transparent 3px, transparent 15px); 
   }
   .eng, .rus {
     padding: 0;
+    width: 90%;
+    position: relative;
+  }
+  .eng {
+    background: -webkit-linear-gradient(0deg, rgb(187, 155, 102) 12%, rgb(224, 201, 164) 100%);
+    background: -moz-linear-gradient(0deg, rgb(187, 155, 102) 12%, rgb(224, 201, 164) 100%);
+    background: linear-gradient(0deg, rgb(187, 155, 102) 12%, rgb(224, 201, 164) 100%);
+    box-shadow: 2px 0 1rem 0 rgba(0, 0, 0, 0.7);
+    border-radius: 0 0 3% 3%;
+  } 
+  .rus {
+    background: -webkit-linear-gradient(180deg, rgba(187, 155, 102, 0.8) 12%, rgb(224, 201, 164) 100%);
+    background: -moz-linear-gradient(180deg, rgba(187, 155, 102, 0.8) 12%, rgb(224, 201, 164) 100%);
+    background: linear-gradient(180deg, rgba(187, 155, 102, 0.8) 12%, rgb(224, 201, 164) 100%);
+    box-shadow: 0 0 2rem 0 rgba(0, 0, 0, 0.7);
+    border-radius: 3% 3% 0 0;
   }
   ol {
     flex-wrap: nowrap;
-    list-style: none;
     padding: 0;
   }
   form, h1 {
@@ -185,12 +226,13 @@ footer {
   }
   input {
     width:90%;
-    margin-bottom: 2.4vh;
+    margin-bottom: 1vh;
+    height: 4vh;
   }
   input:focus {
     height: 5vh;
+    margin-bottom: 0;
     width: 90%;
-    transition: height 1s;
   }
 }
 @keyframes shake {
